@@ -63,6 +63,7 @@ Documentation updates
 * [Install](https://github.com/pysonDB/pysonDB#install) 
 * [Example Code](https://github.com/pysonDB/pysonDB/tree/master/example) 
 * [Command Line Operations](https://pysondb.github.io/pysonDB/cli) 
+* [Database](https://pysondb.github.io/pysonDB/database) 
 * [Adding Data](https://pysondb.github.io/pysonDB/add) 
 * [Get data](https://pysondb.github.io/pysonDB/get) 
 * [Search data](https://pysondb.github.io/pysonDB/re_search) 

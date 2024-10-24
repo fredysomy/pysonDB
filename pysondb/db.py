@@ -22,6 +22,10 @@ EMPTY_DATA: Dict[str, Any] = {"data": []}
 logger = logging.getLogger("pysondb")
 logger.setLevel(logging.DEBUG)
 
+if not logger.hasHandlers():
+    handler_console = logging.StreamHandler()
+    handler_console.setLevel(logging.DEBUG)
+    logger.addHandler(handler_console)
 
 # util functions
 def create_db(filename: str, create_file: bool = True) -> True:
@@ -112,6 +116,11 @@ class JsonDatabase:
                             ),
                         )
                 except IndexError:
+                    if self.id_fieldname in new_data.keys():
+                        logger.warning(
+                            f"The provided {self.id_fieldname} field was replaced by the"
+                            f" system-generated {self.id_fieldname}."
+                        )
                     new_data[self.id_fieldname] = self._get_id()
                     db_data["data"].append(new_data)
                     logger.debug("Add first data entry; {0}".format(new_data))
@@ -129,6 +138,12 @@ class JsonDatabase:
                     db_keys, index_keys = new_data, None
 
                 keys = set(db_keys[0].keys())
+
+                if self.id_fieldname in new_data[0].keys():
+                        logger.warning(
+                            f"The provided {self.id_fieldname} field was replaced by the"
+                            f" system-generated {self.id_fieldname}."
+                        )
 
                 for d in new_data:
                     d_keys = set(d.keys() | index_keys) if index_keys else set(d.keys())
