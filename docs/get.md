@@ -22,7 +22,7 @@
 
 * returns only one data by default.
 
-* get(3) => retruns 3 json data. 
+* get(3) => returns 3 json data. 
 
 path.json
 
